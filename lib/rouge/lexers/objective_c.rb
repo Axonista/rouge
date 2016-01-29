@@ -125,10 +125,49 @@ module Rouge
       state :classname do
         mixin :whitespace
 
+        rule /(#{id})(\s*)(:)(\s*)(#{id})(\s*)([<])(\s*)(#{id})(\s*)([>])/ do
+          groups(Name::Class, Text,
+                 Punctuation, Text,
+                 Name::Class, Text,
+                 Punctuation, Text,
+                 Name::Class, Text,
+                 Punctuation)
+          pop!
+        end
+
         rule /(#{id})(\s*)(:)(\s*)(#{id})/ do
           groups(Name::Class, Text,
                  Punctuation, Text,
                  Name::Class)
+          pop!
+        end
+
+        rule /(#{id})(\s*)([<])(\s*)(#{id})(\s*)([>])/ do
+          groups(Name::Class, Text,
+                 Punctuation, Text,
+                 Name::Class, Text,
+                 Punctuation)
+         pop!
+        end
+
+        rule /(#{id})(\s*)([(])(\s*)([)])(\s*)([<])(\s*)(#{id})(\s*)([>])/ do
+          groups(Name::Class, Text,
+                 Punctuation, Text,
+                 Punctuation, Text,
+                 Punctuation, Text,
+                 Name::Class, Text,
+                 Punctuation)
+          pop!
+        end
+
+        rule /(#{id})(\s*)([(])(\s*)(#{id})(\s*)([)])(\s*)([<])(\s*)(#{id})(\s*)([>])/ do
+          groups(Name::Class, Text,
+                 Punctuation, Text,
+                 Name::Label, Text,
+                 Punctuation, Text,
+                 Punctuation, Text,
+                 Name::Class, Text,
+                 Punctuation)
           pop!
         end
 
