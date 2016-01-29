@@ -137,6 +137,7 @@ module Rouge
                  Punctuation, Text,
                  Name::Label, Text,
                  Punctuation)
+          pop!
         end
 
         rule id, Name::Class, :pop!
