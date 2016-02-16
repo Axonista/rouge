@@ -13,6 +13,19 @@ module Rouge
 
       mimetypes 'text/x-objective_c', 'application/x-objective_c'
 
+      def self.keywords_type
+        @keywords_type ||= super + %w(
+          id instancetype
+
+          self super
+
+          nonatomic atomic
+          weak strong retain unsafe_unretained
+
+          nullable nonnull null_unspecified null_resettable _Nullable _Nonnull _Null_unspecified
+        )
+      end
+
       def self.at_keywords
         @at_keywords ||= %w(
           selector private protected public encode synchronized try
